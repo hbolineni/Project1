@@ -1,1 +1,64 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101323">
+  <meta name="description" content="A small collection of colorful moments.">
+  <title>Gallery — A little web magic</title>
+  <style>
+    :root { color-scheme: dark; --ink: #f8f7ff; --muted: #b8bad0; --cyan: #67e8f9; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; padding: 6rem 1rem 4rem; color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(ellipse at 18% 20%, rgba(124,58,237,.25), transparent 38%), radial-gradient(ellipse at 84% 78%, rgba(6,182,212,.18), transparent 36%), #101323; }
+    .orb { position: fixed; z-index: -1; width: 26rem; aspect-ratio: 1; border-radius: 50%; filter: blur(100px); opacity: .24; pointer-events: none; animation: drift 12s ease-in-out infinite alternate; }
+    .one { background: #8b5cf6; top: -12rem; left: -8rem; } .two { background: #06b6d4; bottom: -15rem; right: -9rem; animation-delay: -5s; }
+    .nav { position: fixed; z-index: 2; top: 1.25rem; left: 50%; display: flex; gap: .35rem; padding: .35rem; border: 1px solid rgba(255,255,255,.13); border-radius: 999px; background: rgba(16,19,35,.65); backdrop-filter: blur(14px); transform: translateX(-50%); }
+    .nav a { padding: .65rem 1rem; border-radius: 999px; color: var(--muted); font-size: .88rem; font-weight: 650; text-decoration: none; transition: color .2s ease, background .2s ease; }
+    .nav a:hover, .nav a[aria-current="page"] { color: var(--ink); background: rgba(255,255,255,.1); }
+    .nav a:focus-visible, .tile:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    main { width: min(100%, 1040px); margin: 0 auto; animation: arrive .9s cubic-bezier(.2,.8,.2,1) both; }
+    .eyebrow { margin: 0 0 1rem; color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(3rem, 9vw, 5.5rem); line-height: 1; letter-spacing: -.07em; }
+    h1 span { color: transparent; background: linear-gradient(100deg, #c4b5fd 5%, #f0abfc 48%, #67e8f9 95%); background-clip: text; -webkit-background-clip: text; }
+    .intro { max-width: 540px; margin: 1.25rem 0 2rem; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .tile { overflow: hidden; min-height: 310px; border: 1px solid rgba(255,255,255,.14); border-radius: 24px; background: rgba(255,255,255,.055); box-shadow: 0 24px 60px rgba(0,0,0,.24); transition: transform .25s ease, border-color .25s ease; }
+    .tile:hover { transform: translateY(-5px); border-color: rgba(255,255,255,.3); }
+    .art { position: relative; display: grid; place-items: center; height: 220px; overflow: hidden; }
+    .art::before, .art::after { position: absolute; content: ""; border-radius: 50%; filter: blur(1px); }
+    .aurora { background: radial-gradient(ellipse at 50% 100%, #5eead4 0%, #0e7490 25%, #172554 68%, #111322 100%); }
+    .aurora::before { width: 80%; height: 55%; bottom: -22%; background: #a78bfa; filter: blur(35px); }
+    .afterglow { background: radial-gradient(circle at 50% 68%, #f9a8d4 0%, #c026d3 19%, #6b21a8 43%, #1e1b4b 78%); }
+    .afterglow::before { width: 40%; aspect-ratio: 1; top: 17%; background: #fde68a; box-shadow: 0 0 55px 12px rgba(253,230,138,.5); }
+    .daydream { background: linear-gradient(145deg, #164e63, #312e81 55%, #701a75); }
+    .daydream::before { width: 45%; aspect-ratio: 1; top: 12%; left: 14%; background: #67e8f9; opacity: .8; box-shadow: 0 0 55px 8px rgba(103,232,249,.3); }
+    .daydream::after { width: 54%; aspect-ratio: 1; right: 9%; bottom: -10%; background: #f0abfc; opacity: .8; }
+    .caption { padding: 1rem 1.15rem 1.2rem; }
+    .caption h2 { margin: 0; font-size: 1rem; letter-spacing: -.02em; }
+    .caption p { margin: .4rem 0 0; color: var(--muted); font-size: .87rem; line-height: 1.5; }
+    footer { margin-top: 2.25rem; color: rgba(220,222,241,.53); text-align: center; font-size: .76rem; letter-spacing: .08em; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(22px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes drift { to { transform: translate(45px,35px) scale(1.13); } }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .tile { min-height: 280px; } .art { height: 195px; } }
+    @media (max-width: 480px) { .nav { top: .8rem; gap: 0; } .nav a { padding: .62rem .75rem; font-size: .8rem; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="orb one" aria-hidden="true"></div><div class="orb two" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="gallery.html" aria-current="page">Gallery</a>
+  </nav>
+  <main>
+    <p class="eyebrow">A few colorful moments</p>
+    <h1>The <span>gallery.</span></h1>
+    <p class="intro">A little collection of color, light, and daydreams. These abstract scenes are made with gradients and shapes, ready to grow with your own photos and memories.</p>
+    <section class="grid" aria-label="Gallery collection">
+      <article class="tile"><div class="art aurora" role="img" aria-label="Teal and violet northern lights over a dark horizon"></div><div class="caption"><h2>Aurora</h2><p>Quiet colors after dark.</p></div></article>
+      <article class="tile"><div class="art afterglow" role="img" aria-label="A glowing golden sun in a pink and purple sky"></div><div class="caption"><h2>Afterglow</h2><p>The last light of the day.</p></div></article>
+      <article class="tile"><div class="art daydream" role="img" aria-label="Soft overlapping cyan and pink shapes on a twilight background"></div><div class="caption"><h2>Daydream</h2><p>Somewhere between here and there.</p></div></article>
+    </section>
+  </main>
+  <footer>MADE WITH A LITTLE SPARK ✨</footer>
+</body>
+</html>
