@@ -52,6 +52,31 @@
       backdrop-filter: blur(20px);
       animation: arrive .9s cubic-bezier(.2,.8,.2,1) both;
     }
+    .nav {
+      position: fixed;
+      z-index: 2;
+      top: 1.25rem;
+      left: 50%;
+      display: flex;
+      gap: .35rem;
+      padding: .35rem;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 999px;
+      background: rgba(16,19,35,.65);
+      backdrop-filter: blur(14px);
+      transform: translateX(-50%);
+    }
+    .nav a {
+      padding: .65rem 1rem;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 650;
+      text-decoration: none;
+      transition: color .2s ease, background .2s ease;
+    }
+    .nav a:hover, .nav a[aria-current="page"] { color: var(--ink); background: rgba(255,255,255,.1); }
+    .nav a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -119,9 +144,15 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
+    @media (max-width: 480px) { .nav { top: .8rem; } .footer { bottom: .8rem; } }
   </style>
 </head>
 <body>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
   <div class="orb one" aria-hidden="true"></div>
   <div class="orb two" aria-hidden="true"></div>
   <main>
