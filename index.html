@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101323">
+  <meta name="description" content="A little hello from the web.">
+  <title>Hello, world! — A little web magic</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f8f7ff;
+      --muted: #b8bad0;
+      --violet: #a78bfa;
+      --cyan: #67e8f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 18% 20%, rgba(124, 58, 237, .25), transparent 38%),
+        radial-gradient(ellipse at 84% 78%, rgba(6, 182, 212, .18), transparent 36%),
+        #101323;
+    }
+    .orb {
+      position: fixed;
+      width: 26rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .24;
+      pointer-events: none;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .orb.one { background: #8b5cf6; top: -12rem; left: -8rem; }
+    .orb.two { background: #06b6d4; bottom: -15rem; right: -9rem; animation-delay: -5s; }
+    main {
+      position: relative;
+      width: min(90vw, 760px);
+      padding: clamp(2.5rem, 8vw, 5.75rem) clamp(1.5rem, 7vw, 5rem);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+      box-shadow: 0 32px 100px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.12);
+      backdrop-filter: blur(20px);
+      animation: arrive .9s cubic-bezier(.2,.8,.2,1) both;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .spark { color: #fbbf24; font-size: 1rem; }
+    h1 {
+      margin: 0;
+      font-size: clamp(3.4rem, 10vw, 6.7rem);
+      line-height: .98;
+      letter-spacing: -.075em;
+      font-weight: 800;
+    }
+    h1 span {
+      display: block;
+      padding: .08em 0 .16em;
+      color: transparent;
+      background: linear-gradient(100deg, #c4b5fd 5%, #f0abfc 48%, #67e8f9 95%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    .intro {
+      max-width: 430px;
+      margin: 1.5rem auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      line-height: 1.75;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      margin-top: 2.25rem;
+      padding: .95rem 1.35rem;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: 999px;
+      color: #111322;
+      background: linear-gradient(100deg, #c4b5fd, #67e8f9);
+      box-shadow: 0 8px 30px rgba(103,232,249,.15);
+      font: inherit;
+      font-size: .94rem;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(167,139,250,.3); }
+    .button:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+    .button span { font-size: 1.1rem; transition: transform .2s ease; }
+    .button:hover span { transform: translateX(4px); }
+    .footer {
+      position: fixed;
+      bottom: 1.5rem;
+      color: rgba(220,222,241,.53);
+      font-size: .76rem;
+      letter-spacing: .08em;
+    }
+    @keyframes arrive { from { opacity: 0; transform: translateY(22px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes drift { to { transform: translate(45px, 35px) scale(1.13); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb one" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
+  <main>
+    <p class="eyebrow"><span class="spark" aria-hidden="true">✦</span> A little web magic</p>
+    <h1>Hello,<span>world!</span></h1>
+    <p class="intro">A tiny page, a fresh beginning, and a whole world of possibilities—just one click away.</p>
+    <button class="button" type="button" onclick="document.getElementById('hello').textContent = 'You just made the web a little brighter ✨'">
+      <span id="hello">Say hello</span><span aria-hidden="true">→</span>
+    </button>
+  </main>
+  <p class="footer">MADE WITH A LITTLE SPARK ✨</p>
+</body>
+</html>
